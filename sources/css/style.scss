@@ -1,0 +1,294 @@
+
+@mixin break($point) {
+    @if $point==414 {
+        @media (min-width: 414px) {
+            @content ;
+        }
+    }
+    @else if $point==640 {
+        @media (min-width: 640px) {
+            @content ;
+        }
+    }
+    @else if $point==1280 {
+        @media (min-width: 1280px) {
+            @content ;
+        }
+    }
+    @else if $point==768 {
+        @media (min-width: 768px) {
+            @content ;
+        }
+    }
+    @else if $point==940 {
+        @media (min-width: 940px) {
+            @content ;
+        }
+    }
+    @else if $point==1024 {
+        @media (min-width: 1024px) {
+            @content ;
+        }
+    }
+    @else if $point==1200 {
+        @media (min-width: 1200px) {
+            @content ;
+        }
+    }
+    @else if $point==1400 {
+        @media (min-width: 1400px) {
+            @content ;
+        }
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    @include break(768) {
+        padding: 0 30px;
+    }
+    @include break(1024) {
+        width: 1024px;
+        padding: 0;
+    }
+    @include break(1400) {
+        width: 1400px;
+    }
+    
+}
+
+
+
+nav {
+    height: 100vh;
+    display: grid;
+    align-content: center;
+    transition: .3s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-bottom: 2px solid grey;
+    z-index: 99999;
+    .search {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        img {
+            height: 50px;
+        }
+        input[type="text"] {
+            width: 80%;
+            height: 25px;
+            border-radius: 5px;
+            padding: 0 10px;
+            border: 1px solid #253650;
+            color: #253650;
+            transition: .3s ease-in-out;
+            &:focus {
+                outline: none;
+                border: 1px solid lighten($color: #253650, $amount: 40%);
+                color: lighten($color: #253650, $amount: 40%);
+            }
+            &:hover {
+                border: 1px solid lighten($color: #253650, $amount: 40%);
+                color: lighten($color: #253650, $amount: 40%);
+            }
+        }
+        input[type="submit"] {
+            width: 50%;
+            height: 20px;
+            background: white;
+            border: 1px solid #253650;
+            border-radius: 5px;
+            background: #253650;
+            color: white;
+            transition: .3s ease-in-out;
+            &:hover {
+                background: white;
+                color: #253650;
+            }
+        }
+    }
+}
+
+
+
+.top {
+    height: 100px;
+    display: block;
+    align-content: center;
+    @include break(768) {
+        height: 65px;
+    }
+    .search {
+        grid-template-columns: repeat(3, 3fr);
+        grid-template-rows: 40px 40px;
+        grid-gap: 0px;
+        margin: 10px 0;
+        @include break(768) {
+            grid-template-columns: repeat(5, 5fr);
+            grid-template-rows: 40px;
+        }
+        img {
+            grid-column-start: 1; 
+            grid-column-end: 4; 
+            grid-row-start: 1; 
+            grid-row-end: 1; 
+            @include break(768) {
+                grid-column: 1;
+            }
+        }
+        input[type="text"] {
+            width: 100%;
+            grid-column: span 2;
+            @include break(768) {
+                grid-column: span 3;
+                height: 30px;
+                border-radius: 5px 0 0 5px;
+            }
+        }
+        input[type="submit"] {
+            grid-column-start: 3; 
+            grid-column-end: 3; 
+            grid-row-start: 2; 
+            grid-row-end: 2; 
+            @include break(768) {
+                width: 100%;
+                grid-column: 5;
+                grid-row-start: 1; 
+                grid-row-end: 1; 
+                height: 30px;
+                background: white;
+                border: 1px solid #253650;
+                border-radius: 0 5px 5px 0;
+                color: #253650;
+                &:hover {
+                    background: #253650;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.error {
+    border: 2px solid red !important;
+    border-radius: 5px;
+    position: relative;
+    box-sizing: border-box;
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "before";
+        color: red;
+    }
+}
+
+
+._slider {
+    margin-top: 50px;
+    height: calc(100vh - 50px);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    ._slider_next {
+        position: absolute;
+        bottom: 100px;
+        right: 0;
+    }
+    ._slider_prev {
+        position: absolute;
+        bottom: 100px;
+        left: 0;
+    }
+  
+
+    
+    &_next,
+    &_prev {
+      z-index: 999;
+      width: auto;
+      height: auto;
+      padding: 5px 20px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 2em;
+      opacity: 0.5;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 1;
+        -webkit-transition: all 0.2s ease;
+      }
+    }
+  
+    
+    ul {
+      position: relative;
+      
+      li {
+        float: left;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        text-align: center;
+        background-size: cover;
+      }
+    }
+  }
+
+
+
+.output {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+    .loading {
+        margin-top: 60%;
+    }
+    li {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 50px);
+        display: grid;
+        justify-items: center;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        grid-template-columns: 1fr;
+        .counter {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            width: 100%;
+            background: white;
+            width: 100px;
+            margin-left: -50px;
+            line-height: 50px;
+            background: rgba(0,0,0,0.25);
+            color: white;
+        }
+    }
+}
